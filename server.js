@@ -16,5 +16,5 @@ app.use("/users", usersRoutes);
 const port = 3000;
 
 app.listen(port, () => {
-  console.log("Listening From: ", port);
+  console.log("Listening from: ", port);
 });
