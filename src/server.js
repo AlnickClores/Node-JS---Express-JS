@@ -10,8 +10,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 const usersRoutes = require("./routes/users");
+const heroesRoutes = require("./routes/heroes");
 
 app.use("/users", usersRoutes);
+app.use("/heroes", heroesRoutes);
 
 const port = 3000;
 
