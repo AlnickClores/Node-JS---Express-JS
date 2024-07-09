@@ -2,6 +2,7 @@ const express = require("express");
 const connection = require("../database/connection");
 const createHero = require("../services/create");
 const viewHero = require("../services/read");
+const updateHero = require("../services/update");
 
 const router = express.Router();
 
@@ -38,6 +39,16 @@ router.get("/view", async (req, res) => {
     res.status(200).send(heroes);
   } else {
     res.status(500).send({ message: "Error retrieving the heroes." });
+  }
+});
+
+router.post("/update", async (req, res) => {
+  const { id, name, role, damage_type, price, image } = req.body;
+  const result = await updateHero(id, name, role, damage_type, price, image);
+  if (result) {
+    res.status(200).json({ message: "Hero updated successfully" });
+  } else {
+    res.status(500).json({ message: "Error updating hero" });
   }
 });
 
