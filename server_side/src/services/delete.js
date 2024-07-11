@@ -1,12 +1,12 @@
 const connection = require("../database/connection");
 
-module.exports = async () => {
+module.exports = async (id) => {
   try {
-    const query = "SELECT * FROM heroes";
-    const [rows, fields] = await connection.query(query);
-    return rows;
+    const query = `DELETE FROM heroes WHERE id = ?`;
+    const [result] = await connection.query(query, [id]);
+    return result.affectedRows > 0;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };

@@ -59,9 +59,21 @@ router.put("/update", async (req, res) => {
 
   const result = await updateHero(id, fieldsToUpdate);
   if (result) {
-    res.status(200).json({ message: "Hero updated successfully" });
+    res.status(200).send({ message: "Hero updated successfully" });
   } else {
-    res.status(500).json({ message: "Error updating hero" });
+    res.status(500).send({ message: "Error updating hero" });
+  }
+});
+
+// delete heroes
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await deleteHero(id);
+
+  if (result) {
+    res.status(200).send({ message: "Hero Deleted Successfully" });
+  } else {
+    res.status(500).send({ message: "Hero Deletion Unsuccessfull" });
   }
 });
 
