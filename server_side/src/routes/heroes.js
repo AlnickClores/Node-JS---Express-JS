@@ -3,9 +3,11 @@ const connection = require("../database/connection");
 const createHero = require("../services/create");
 const viewHero = require("../services/read");
 const updateHero = require("../services/update");
+const deleteHero = require("../services/delete");
 
 const router = express.Router();
 
+// check database connection
 router.get("/test-db", async (req, res) => {
   try {
     const result = await connection.execute("SELECT 1 + 1 AS result");
@@ -21,6 +23,7 @@ router.get("/test-db", async (req, res) => {
   }
 });
 
+// create heroes
 router.post("/insert", async (req, res) => {
   const { name, role, damage_type, price, image } = req.body;
 
@@ -32,6 +35,7 @@ router.post("/insert", async (req, res) => {
   }
 });
 
+// read heroes
 router.get("/view", async (req, res) => {
   const heroes = await viewHero();
 
@@ -42,9 +46,18 @@ router.get("/view", async (req, res) => {
   }
 });
 
-router.post("/update", async (req, res) => {
+// update heroes
+router.put("/update", async (req, res) => {
   const { id, name, role, damage_type, price, image } = req.body;
-  const result = await updateHero(id, name, role, damage_type, price, image);
+  const fieldsToUpdate = {};
+
+  if (name) fieldsToUpdate.name = name;
+  if (role) fieldsToUpdate.role = role;
+  if (damage_type) fieldsToUpdate.damage_type = damage_type;
+  if (price) fieldsToUpdate.price = price;
+  if (image) fieldsToUpdate.image = image;
+
+  const result = await updateHero(id, fieldsToUpdate);
   if (result) {
     res.status(200).json({ message: "Hero updated successfully" });
   } else {
