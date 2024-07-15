@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.homepage {
+.main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,4 +72,14 @@ button a {
 
 .delete-btn {
   background-color: rgb(231, 48, 48);
+}
+
+.create-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
 }
