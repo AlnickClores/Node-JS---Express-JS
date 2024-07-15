@@ -3,8 +3,7 @@ import HeroesCard from "../components/HeroesCard";
 
 const Heroes = () => {
   return (
-    <div>
-      <h1>View Heroes</h1>
+    <div className="heroes-container">
       <HeroesCard />
     </div>
   );
