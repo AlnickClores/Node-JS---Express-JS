@@ -1,10 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const CreateForm = () => {
+const UpdateHero = () => {
   const navigate = useNavigate();
+  const locaion = useLocation();
+
+  const heroId = locaion.pathname.split("/")[2];
 
   const [hero, setHero] = useState({
     name: "",
@@ -18,10 +20,10 @@ const CreateForm = () => {
     setHero((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/heroes/insert", hero);
+      await axios.put("http://localhost:3001/heroes/update/" + heroId, hero);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -30,7 +32,7 @@ const CreateForm = () => {
 
   return (
     <div className="form-container">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleUpdate}>
         <div className="form-inner-container">
           <label>
             Hero Name:
@@ -39,7 +41,6 @@ const CreateForm = () => {
               placeholder="name"
               onChange={handleChange}
               name="name"
-              required
             />
           </label>
           <label>
@@ -49,7 +50,6 @@ const CreateForm = () => {
               placeholder="role"
               onChange={handleChange}
               name="role"
-              required
             />
           </label>
           <label>
@@ -59,7 +59,6 @@ const CreateForm = () => {
               placeholder="damage type"
               onChange={handleChange}
               name="damage_type"
-              required
             />
           </label>
           <label>
@@ -69,7 +68,6 @@ const CreateForm = () => {
               placeholder="price"
               onChange={handleChange}
               name="price"
-              required
             />
           </label>
           <label>
@@ -79,13 +77,12 @@ const CreateForm = () => {
               placeholder="image"
               onChange={handleChange}
               name="image"
-              required
             />
           </label>
         </div>
         <div className="btn-container">
           <button className="submit-btn" type="submit">
-            Insert Hero
+            Update Hero
           </button>
         </div>
       </form>
@@ -93,4 +90,4 @@ const CreateForm = () => {
   );
 };
 
-export default CreateForm;
+export default UpdateHero;

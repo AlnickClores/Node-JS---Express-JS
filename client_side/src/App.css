@@ -74,12 +74,37 @@ button a {
   background-color: rgb(231, 48, 48);
 }
 
-.create-form-container {
+.form-container {
   display: flex;
   flex-direction: column;
 }
 
-.create-form {
+.form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+input {
+  padding: 3px 0;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.btn-container {
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background-color: rgb(196, 255, 196);
+  font-weight: bold;
+  text-align: center;
 }
