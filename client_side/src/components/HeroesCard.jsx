@@ -19,6 +19,20 @@ const HeroesCard = () => {
     fetchHeroes();
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this hero?"
+    );
+    if (confirmed) {
+      try {
+        await axios.delete(`http://localhost:3001/heroes/delete/${id}`);
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="heroes-card-container">
       {heroes.map((hero) => (
@@ -37,8 +51,11 @@ const HeroesCard = () => {
             <button className="update-btn">
               <Link to={`/update/${hero.id}`}>Update</Link>
             </button>
-            <button className="delete-btn">
-              <Link to="/">Delete</Link>
+            <button
+              className="delete-btn"
+              onClick={() => handleDelete(hero.id)}
+            >
+              <p className="del">Delete</p>
             </button>
           </div>
         </div>

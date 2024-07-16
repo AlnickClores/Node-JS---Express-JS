@@ -70,6 +70,10 @@ button a {
   background-color: rgb(240, 240, 83);
 }
 
+.del {
+  font-weight: 600;
+}
+
 .delete-btn {
   background-color: rgb(231, 48, 48);
 }
@@ -104,7 +108,7 @@ input {
 }
 
 .submit-btn {
-  background-color: rgb(196, 255, 196);
+  background-color: rgb(83, 223, 83);
   font-weight: bold;
   text-align: center;
 }
