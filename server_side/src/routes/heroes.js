@@ -47,8 +47,9 @@ router.get("/view", async (req, res) => {
 });
 
 // update heroes
-router.put("/update", async (req, res) => {
-  const { id, name, role, damage_type, price, image } = req.body;
+router.put("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, role, damage_type, price, image } = req.body;
   const fieldsToUpdate = {};
 
   if (name) fieldsToUpdate.name = name;

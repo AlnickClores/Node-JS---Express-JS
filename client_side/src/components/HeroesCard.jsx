@@ -35,7 +35,7 @@ const HeroesCard = () => {
           </p>
           <div>
             <button className="update-btn">
-              <Link to="/">Update</Link>
+              <Link to={`/update/${hero.id}`}>Update</Link>
             </button>
             <button className="delete-btn">
               <Link to="/">Delete</Link>
